@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Produit extends Model
 {
-    protected $fillable = ['reference','designation','prix_unitaire','image','etat','categorie_id','user_di'];
+    protected $fillable = ['reference','designation','prix_unitaire','image','etat','categorie_id','user_id'];
 
     use HasFactory;
 
@@ -20,5 +20,10 @@ class Produit extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function commandes()
+    {
+        return $this->belongsToMany(Commande::class);
     }
 }
