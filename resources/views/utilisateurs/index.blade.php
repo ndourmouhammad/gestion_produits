@@ -137,21 +137,36 @@
 <!-- Corps de la page avec produits sous forme de cartes -->
 <div class="container mt-5">
     <div class="row">
+        @foreach ($categoriesAvecProduits as $categorie)
+        <div class="col-md-12">
+            <h2>{{ $categorie->libelle }}</h2>
+        </div>
+        @foreach ($categorie->produits as $produit)
         <div class="col-md-4">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Produit 1">
+            <div class="card mt-3 mb-3">
+                <img src="{{ $produit->image }}" class="card-img-top" alt="{{ $produit->designation }}">
                 <div class="card-body">
-                    <h5 class="card-title">Produit 1</h5>
-                    <p class="card-text">Description courte du produit 1.</p>
-                    <p class="card-text"><strong>Prix: 4.500 FCFA</strong></p>
+                    <h5 class="card-title">{{ $produit->designation }}</h5>
+                    <p class="card-text"><strong>Prix: {{ $produit->prix_unitaire }} FCFA</strong></p>
+                    <div class="status-badge mb-2">
+                        @if ($produit->etat == 'disponible')
+                        <span class="badge bg-success text-white">disponible</span>
+                        @elseif ($produit->etat == 'en_rupture')
+                        <span class="badge bg-danger text-white">en rupture</span>
+                        @else
+                        <span class="badge bg-warning text-white">en stock</span>
+                        @endif
+                    </div>
                     <a href="#" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Ajouter au panier</a>
                     <a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i> Voir détails</a>
                 </div>
             </div>
         </div>
-        <!-- Répéter les cartes pour d'autres produits -->
+        @endforeach
+        @endforeach
     </div>
 </div>
+
 
 <!-- Footer -->
 <footer class="footer mt-5 py-3">

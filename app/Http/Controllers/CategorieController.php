@@ -9,13 +9,6 @@ class CategorieController extends Controller
 {
     //
 
-    public function index()
-    {
-        $categories = Categorie::all();
-        return view('utilisateurs.index', compact('categories'));
-
-    }
-
     public function detail($id)
     {
         $categorie = Categorie::findOrFail($id); // Trouve le bien par son ID ou renvoie une erreur 404
@@ -29,11 +22,7 @@ class CategorieController extends Controller
 
     }
 
-    public function dashboard()
-    {
-        $categories = Categorie::all();
-        return view('admins.dashboard', compact('categories'));
-    }
+   
 
     public function ajoutCategorie(Request $request)
     {

@@ -230,7 +230,118 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Les données des produits seront insérées ici -->
+                        @foreach ($produits as $produit)
+                        <tr>
+                            <td>{{ $produit->id }}</td>
+                            <td>{{ $produit->reference }}</td>
+                            <td>{{ $produit->designation }}</td>
+                            <td>{{ $produit->prix_unitaire }} FCFA</td>
+                            <td>{{ $produit->categorie->libelle }}</td>
+                            <td><img class="img-fluid" alt="" style="max-width: 100px; max-height: 100px;" src="{{ $produit->image }}" alt=""></td>
+                            <td>{{ $produit->etat }}</td>
+                            <td>
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#editCategoryModal{{ $produit->id }}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteCategoryModal{{ $produit->id }}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Modal pour ajouter une catégorie -->
+<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductModalLabel">Ajouter une produit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addCategoryForm" action="{{ route('ajout-categorie') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="user_id" value="1">
+                    <div class="form-group">
+                        <label for="libelle">Libellé</label>
+                        <input type="text" class="form-control" id="libelle" name="libelle" value="{{ old('libelle') }}">
+                        @if ($errors->has('libelle'))
+                            <div class="error text-danger">{{ $errors->first('libelle') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}">
+                        @if ($errors->has('description'))
+                            <div class="error text-danger">{{ $errors->first('description') }}</div>
+                        @endif
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+                        <!-- Modal pour modifier une catégorie -->
+                        <div class="modal fade" id="editCategoryModal{{ $categorie->id }}" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel{{ $categorie->id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editCategoryModalLabel{{ $categorie->id }}">Modifier cette Catégorie</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="modifyCategoryForm{{ $categorie->id }}" action="{{ route('modifier-categorie', ['id' => $categorie->id]) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="1">
+                                            <div class="form-group">
+                                                <label for="libelle">Libellé</label>
+                                                <input type="text" class="form-control" id="libelle{{ $categorie->id }}" name="libelle" value="{{ $categorie->libelle }}" required>
+                                                @if ($errors->has('libelle'))
+                                                    <div class="error text-danger">{{ $errors->first('libelle') }}</div>
+                                                @endif
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="description">Description</label>
+                                                <input type="text" class="form-control" id="description{{ $categorie->id }}" name="description" value="{{ $categorie->description }}" required>
+                                                @if ($errors->has('description'))
+                                                    <div class="error text-danger">{{ $errors->first('description') }}</div>
+                                                @endif
+                                            </div>
+                                            <button type="submit" class="btn btn-warning">Modifier</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal pour supprimer une catégorie -->
+                        <div class="modal fade" id="deleteCategoryModal{{ $categorie->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCategoryModalLabel{{ $categorie->id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteCategoryModalLabel{{ $categorie->id }}">Supprimer cette Catégorie</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="deleteCategoryForm{{ $categorie->id }}" action="{{ route('supprimer-categorie', ['id' => $categorie->id]) }}" method="POST">
+                                            @csrf
+                                            <p>Êtes-vous sûr de vouloir supprimer cette catégorie ?</p>
+                                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @endforeach
                     </tbody>
                 </table>
             </div>
