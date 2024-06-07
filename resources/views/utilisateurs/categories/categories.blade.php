@@ -107,7 +107,7 @@
         @foreach ($categories as $categorie)
         <div class="col-md-4">
             
-            <div class="card">
+            <div class="card mt-5">
                 {{-- <img src="https://images.unsplash.com/photo-1634932515818-7f9292c4e149?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="{{ $categorie->libelle }}"> --}}
                 <div class="card-body">
                     <h5 class="card-title">{{ $categorie->libelle }}</h5>

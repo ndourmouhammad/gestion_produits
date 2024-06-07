@@ -13,5 +13,8 @@ Route::get('/categories', [CategorieController::class, 'categories'])->name('cat
 // admin
 Route::get('/admin', [CategorieController::class, 'dashboard'])->name('dashboard');
 
-Route::post('/ajout-categorie', [CategorieController::class, 'ajoutCategorie'])->name('ajout-categorie');
+Route::get('/admin-category', [CategorieController::class, 'detail'])->name('detail');
 
+Route::post('/ajout-categorie', [CategorieController::class, 'ajoutCategorie'])->name('ajout-categorie');
+Route::post('/modifier-categorie/{id}', [CategorieController::class, 'modifierCategorie'])->name('modifier-categorie');
+Route::post('/supprimer-categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->name('supprimer-categorie');
