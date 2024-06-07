@@ -22,7 +22,10 @@ class CategorieController extends Controller
 
     }
 
-   
+   public function ajoutCategorieForm()
+   {
+    return view('admins.categories.ajout');
+   }
 
     public function ajoutCategorie(Request $request)
     {
@@ -34,7 +37,13 @@ class CategorieController extends Controller
 
         Categorie::create($request->all());
 
-        return redirect()->back()->with('success', 'Catégorie ajouté avec succès');
+        return redirect(route('dashboard'))->with('success', 'Catégorie ajouté avec succès');
+    }
+
+    public function modifierCategorieForm($id)
+    {
+        $categorie = Categorie::findOrFail($id);
+     return view('admins.categories.modification', compact('categorie'));
     }
 
     public function modifierCategorie(Request $request, $id)
@@ -48,7 +57,7 @@ class CategorieController extends Controller
         $categorie = Categorie::findOrFail($id);
         $categorie->update($donneesvalides);
 
-        return redirect()->back()->with('success', 'Catégorie modifiée avec succès');
+        return redirect(route('dashboard'))->with('success', 'Catégorie modifiée avec succès');
     }
 
     public function supprimerCategorie($id)

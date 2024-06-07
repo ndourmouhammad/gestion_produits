@@ -17,10 +17,16 @@ Route::get('/produit/{id}', [ProduitController::class, 'detail'])->name('detail'
 Route::get('/admin', [ProduitController::class, 'dashboard'])->name('dashboard');
 
 
-
+Route::get('/form-ajout-categorie', [CategorieController::class, 'ajoutCategorieForm'])->name('ajoutCategorieForm');
 Route::post('/ajout-categorie', [CategorieController::class, 'ajoutCategorie'])->name('ajout-categorie');
-Route::post('/modifier-categorie/{id}', [CategorieController::class, 'modifierCategorie'])->name('modifier-categorie');
-Route::post('/supprimer-categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->name('supprimer-categorie');
 
+Route::get('/form-modif-categorie/{id}', [CategorieController::class, 'modifierCategorieForm'])->name('modifierCategorieForm')->where('id', '[0-9]+');
+Route::post('/modifier-categorie/{id}', [CategorieController::class, 'modifierCategorie'])->name('modifier-categorie');
+Route::get('/supprimer-categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->name('supprimer-categorie');
+
+Route::get('/form-ajout-produit', [ProduitController::class, 'ajoutProduitForm'])->name('ajoutProduitForm');
 Route::post('/ajout-produit', [ProduitController::class, 'ajoutProduit'])->name('ajout-produit');
-Route::post('/modifier-produit/{id}', [CategorieController::class, 'modifierProduit'])->name('modifier-produit');
+
+Route::get('/form-modif-produit/{id}', [ProduitController::class, 'modifierProduitForm'])->name('modifierProduitForm')->where('id', '[0-9]+');
+Route::post('/modifier-produit/{id}', [ProduitController::class, 'modifierProduit'])->name('modifier-produit');
+Route::get('/supprimer-produit/{id}', [ProduitController::class, 'supprimerProduit'])->name('supprimer-produit');
