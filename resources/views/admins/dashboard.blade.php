@@ -80,25 +80,99 @@
     </nav>
 
     <!-- Main content -->
-    <div class="content tab-content">
-        <!-- Gestion des Catégories -->
-        <div class="tab-pane active" id="categories">
-            <!-- ... -->
-        </div>
+        <!-- Main content -->
+        <div class="content tab-content">
+            <!-- Gestion des Catégories -->
+            <div class="tab-pane active" id="categories">
+                <h2>Gestion des Catégories</h2>
+                <div class="table-wrapper">
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#addCategoryModal">Ajouter une catégorie</button>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom de la catégorie</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Les données des catégories seront insérées ici -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         <!-- Gestion des Produits -->
-        <div class="tab-pane" id="produits">
-            <!-- ... -->
+         <!-- Gestion des Produits -->
+         <div class="tab-pane" id="produits">
+            <h2>Gestion des Produits</h2>
+            <div class="table-wrapper">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#addProductModal">Ajouter un produit</button>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Référence</th>
+                            <th>Désignation</th>
+                            <th>Prix unitaire</th>
+                            <th>Catégorie</th>
+                            <th>L'image</th>
+                            <th>L'état du produit</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Les données des produits seront insérées ici -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <!-- Gestion des Commandes -->
-        <div class="tab-pane" id="commandes">
-            <!-- ... -->
-        </div>
+                <!-- Gestion des Commandes -->
+                <div class="tab-pane" id="commandes">
+                    <h2>Gestion des Commandes</h2>
+                    <div class="table-wrapper">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Référence</th>
+                                    <th>Client</th>
+                                    <th>Date</th>
+                                    <th>Statut</th>
+                                    <th>Montant total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Les données des commandes seront insérées ici -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
         <!-- Gestion des Utilisateurs -->
         <div class="tab-pane" id="users">
-            <!-- ... -->
+            <h2>Gestion des Utilisateurs</h2>
+            <div class="table-wrapper">
+                <button class="btn btn-warning" data-toggle="modal" data-target="#addUserModal">Ajouter un utilisateur</button>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom complet d'utilisateur</th>
+                            <th>Email</th>
+                            <th>Mot de passe</th>
+                            <th>Rôle</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Les données des utilisateurs seront insérées ici -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

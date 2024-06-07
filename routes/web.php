@@ -11,3 +11,4 @@ Route::get('/', [CategorieController::class, 'index'])->name('home');
 
 // admin
 Route::get('/admin', [CategorieController::class, 'dashboard'])->name('dashboard');
+
