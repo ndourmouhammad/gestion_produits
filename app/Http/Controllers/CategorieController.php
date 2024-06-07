@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
@@ -15,6 +16,7 @@ class CategorieController extends Controller
 
     public function dashboard()
     {
-        return view('admins.dashboard');
+        $categories = Categorie::all();
+        return view('admins.dashboard', compact('categories'));
     }
 }

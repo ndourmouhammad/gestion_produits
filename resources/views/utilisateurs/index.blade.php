@@ -110,14 +110,14 @@
             </div>
         </div>
         <div class="carousel-item">
-            <img src="https://img.freepik.com/photos-premium/nourriture-saine-boeuf-cru-saumon-filet-poulet-fruits-legumes_156140-6233.jpg?w=1380" class="d-block w-100" alt="Viandes et Poissons">
+            <img src="https://images.unsplash.com/photo-1634932515818-7f9292c4e149?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Viandes et Poissons">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Viandes et Poissons</h5>
                 <p>Savourez nos viandes et poissons de haute qualité, pour une alimentation équilibrée.</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="https://img.freepik.com/photos-premium/cocktail-alcoolise-fruits-glace_200402-13662.jpg?w=1380" class="d-block w-100" alt="Boissons">
+            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=2157&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Boissons">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Boissons</h5>
                 <p>Rafraîchissez-vous avec nos boissons variées, pour tous les goûts.</p>

@@ -83,25 +83,42 @@
         <!-- Main content -->
         <div class="content tab-content">
             <!-- Gestion des Catégories -->
-            <div class="tab-pane active" id="categories">
-                <h2>Gestion des Catégories</h2>
-                <div class="table-wrapper">
-                    <button class="btn btn-warning" data-toggle="modal" data-target="#addCategoryModal">Ajouter une catégorie</button>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nom de la catégorie</th>
-                                <th>Description</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Les données des catégories seront insérées ici -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            
+    <div class="tab-pane active" id="categories">
+        <h2>Gestion des Catégories</h2>
+        <div class="table-wrapper">
+            <button class="btn btn-warning" data-toggle="modal" data-target="#addCategoryModal">Ajouter une catégorie</button>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom de la catégorie</th>
+                        <th>Description</th>
+                        <th>Date d'ajout</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($categories as $categorie)
+                    <tr>
+                        <td>{{ $categorie->id }}</td>
+                        <td>{{ $categorie->libelle }}</td>
+                        <td>{{ $categorie->description }}</td>
+                        <td>{{ $categorie->created_at }}</td>
+                        <td>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#editCategoryModal{{ $categorie->id }}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteCategoryModal{{ $categorie->id }}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 
         <!-- Gestion des Produits -->
          <!-- Gestion des Produits -->
