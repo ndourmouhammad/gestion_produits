@@ -2,13 +2,16 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catégories - Produits Alimentaires</title>
+    <meta name="viewport" container="width=device-width, initial-scale=1.0">
+    <title>{{ $produit->designation }}</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
+            display: flex;
+    flex-direction: column;
+    min-height: 100vh;
         }
         .navbar, .footer {
             background-color: #4CAF50; /* Vert pour la fraîcheur */
@@ -54,28 +57,34 @@
         .auth-buttons .btn {
             margin-left: 10px;
         }
+        
+
+.container {
+    flex: 1;
+}
+
     </style>
 </head>
 <body>
 
 <!-- Barre de navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="#">Kane&Frères</a>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+    <a class="navbar-brand" href="#">Kane & Frères</a>
+    <div class="collapse navbar-collapse justify-container-center" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('accueil') }}">Accueil</a>
             </li>
-            <li class="nav-item  active">
+            <li class="nav-item  ">
                 <a class="nav-link" href="{{ route('categories') }}">Catégories</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="{{ route('produits') }}">Produits</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Commandes</a>
             </li>
-            
+           
         </ul>
     </div>
     <div class="auth-buttons">
@@ -84,42 +93,39 @@
     </div>
 </nav>
 
-<!-- Bannière -->
-<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="https://www.equonet.net/photo/art/grande/60211230-44089638.jpg?v=1636729429" class="d-block w-100" alt="Fruits et légumes">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Bienvenue dans la page catégorie</h5>
-                <p>Dans cette page vous allez découvrir les différentes variétés de nos produits</p>
-            </div>
+<div class="container">
+    <h1 class="mt-5">Les informations du produit</h1>
+    <div class="card mt-5">
+        <div class="card-header">
+            <h1>{{ $produit->designation }}</h1>
         </div>
-</div>
-
-<div class="container mt-5">
-    <h1>Dall len ak JAM</h1>
-    <div class="row">
-        @foreach ($categories as $categorie)
-        <div class="col-md-4">
+        <div class="d-flex">
             
-            <div class="card mt-5">
-                {{-- <img src="https://images.unsplash.com/photo-1634932515818-7f9292c4e149?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="{{ $categorie->libelle }}"> --}}
-                <div class="card-body">
-                    <h5 class="card-title">{{ $categorie->libelle }}</h5>
-                    <p class="card-text">{{ $categorie->description }}</p>
-                    <a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i> Découvrir</a>
+            <img src="{{ $produit->image }}" class="card-img-top w-50 mx-auto" alt="{{ $produit->designation }}">
+            
+            <div class="card-body">
+                
+                <p>Date d'ajout: {{ $produit->created_at->format('d/m/Y') }}</p>
+                <p>Référence : {{ $produit->reference }}</p>
+                <p>Prix unitaire : {{ $produit->prix_unitaire }} FCFA</p>
+                <p>Catégorie : {{ $produit->categorie->libelle }} </p>
+                <div class="status-badge mb-2">
+                    @if ($produit->etat == 'disponible')
+                    <span class="badge bg-success text-white">disponible</span>
+                    @elseif ($produit->etat == 'en_rupture')
+                    <span class="badge bg-danger text-white">en rupture</span>
+                    @else
+                    <span class="badge bg-warning text-white">en stock</span>
+                    @endif
+                    <div class="mt-5">
+                        <a href="#" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Ajouter au panier</a>
+                    </div>
                 </div>
             </div>
-            
         </div>
-        @endforeach
-        <!-- Répéter les cartes pour d'autres produits -->
-    </div>
+        
 </div>
-
+</div>
 <!-- Footer -->
 <footer class="footer mt-5 py-3">
     <div class="container text-center">
@@ -133,3 +139,4 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html> 
+
