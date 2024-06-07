@@ -22,4 +22,5 @@ Route::post('/ajout-categorie', [CategorieController::class, 'ajoutCategorie'])-
 Route::post('/modifier-categorie/{id}', [CategorieController::class, 'modifierCategorie'])->name('modifier-categorie');
 Route::post('/supprimer-categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->name('supprimer-categorie');
 
-Route::post('/ajout-produit', [CategorieController::class, 'ajoutProduit'])->name('ajout-produit');
+Route::post('/ajout-produit', [ProduitController::class, 'ajoutProduit'])->name('ajout-produit');
+Route::post('/modifier-produit/{id}', [CategorieController::class, 'modifierProduit'])->name('modifier-produit');

@@ -260,25 +260,62 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addCategoryForm" action="{{ route('ajout-categorie') }}" method="POST">
+                <form id="addProductForm" action="{{ route('ajout-produit') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="user_id" value="1">
                     <div class="form-group">
-                        <label for="libelle">Libellé</label>
-                        <input type="text" class="form-control" id="libelle" name="libelle" value="{{ old('libelle') }}">
-                        @if ($errors->has('libelle'))
-                            <div class="error text-danger">{{ $errors->first('libelle') }}</div>
+                        <label for="designation">Désignation</label>
+                        <input type="text" class="form-control" id="designation" name="designation" value="{{ old('designation') }}">
+                        @if ($errors->has('designation'))
+                            <div class="error text-danger">{{ $errors->first('designation') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}">
-                        @if ($errors->has('description'))
-                            <div class="error text-danger">{{ $errors->first('description') }}</div>
+                        <label for="reference">Référence</label>
+                        <input type="text" class="form-control" id="reference" name="reference" value="{{ old('reference') }}">
+                        @if ($errors->has('reference'))
+                            <div class="error text-danger">{{ $errors->first('reference') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="prix_unitaire">Prix unitaire</label>
+                        <input type="number" class="form-control" id="prix_unitaire" name="prix_unitaire" value="{{ old('prix_unitaire') }}">
+                        @if ($errors->has('prix_unitaire'))
+                            <div class="error text-danger">{{ $errors->first('prix_unitaire') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="categorie_id">Catégorie</label>
+                        <select class="form-control" id="categorie_id" name="categorie_id">
+                            @foreach($categories as $categorie)
+                                <option value="{{ $categorie->id }}">{{ $categorie->libelle }}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('categorie_id'))
+                            <div class="error text-danger">{{ $errors->first('categorie_id') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="text" class="form-control-file" id="image" name="image">
+                        @if ($errors->has('image'))
+                            <div class="error text-danger">{{ $errors->first('image') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="etat">État</label>
+                        <select class="form-control" id="etat" name="etat">
+                            <option value="disponible">Disponible</option>
+                            <option value="en_rupture">En rupture</option>
+                            <option value="en_stock">En stock</option>
+                        </select>
+                        @if ($errors->has('etat'))
+                            <div class="error text-danger">{{ $errors->first('etat') }}</div>
                         @endif
                     </div>
                     <button type="submit" class="btn btn-primary">Ajouter</button>
                 </form>
+                
             </div>
         </div>
     </div>

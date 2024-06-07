@@ -37,4 +37,22 @@ class ProduitController extends Controller
         $produit = Produit::findOrFail($id);
         return view('utilisateurs.produits.detail', compact('produit'));
     }
+
+    public function ajoutProduit(Request $request)
+    {
+        $request->validate([
+            'designation' => 'required|max:255',
+            'reference' => 'required',
+            'prix_unitaire' => 'required|integer',
+            'categorie_id' => 'required|integer',
+            'image' => 'required',
+            'prix_unitaire' => 'required|integer',
+            'etat' => 'required',
+            'user_id' => 'required|integer'
+        ]);
+
+        Produit::create($request->all());
+
+        return redirect()->back()->with('success', 'Produit ajouté avec succès');
+    }
 }
