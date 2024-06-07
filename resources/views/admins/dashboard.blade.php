@@ -46,7 +46,7 @@
         
         <ul class="nav flex-column">
             <li class="nav-item text-center">
-                <h3 class="nav-link">Kane&Frères</h3>
+                <h3 class="nav-link">Kane & Frères</h3>
                 <h3 class="nav-link">Mouhammad NDOUR</h3>
             </li>
             
@@ -88,6 +88,11 @@
         <h2>Gestion des Catégories</h2>
         <div class="table-wrapper">
             <button class="btn btn-warning" data-toggle="modal" data-target="#addCategoryModal">Ajouter une catégorie</button>
+            @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -196,6 +201,42 @@
 
 <!-- Modals -->
 <!-- ... -->
+<!-- Modals -->
+<!-- Modal pour ajouter une catégorie -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">Ajouter une Catégorie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addCategoryForm" action="{{ route('ajout-categorie') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="user_id" value="1">
+                    <div class="form-group">
+                        <label for="libelle">Libellé</label>
+                        <input type="text" class="form-control" id="libelle" name="libelle" value="{{ old('libelle') }}">
+                        @if ($errors->has('libelle'))
+                <div class="error text-danger">{{ $errors->first('libelle') }}</div>
+                @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}">
+                        @if ($errors->has('description'))
+                <div class="error text-danger">{{ $errors->first('description') }}</div>
+                @endif
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

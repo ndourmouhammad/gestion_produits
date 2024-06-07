@@ -104,18 +104,20 @@
 <div class="container mt-5">
     <h1>Dall len ak JAM</h1>
     <div class="row">
+        @foreach ($categories as $categorie)
         <div class="col-md-4">
-            @foreach ($categories as $categorie)
+            
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1634932515818-7f9292c4e149?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="{{ $categorie->libelle }}">
+                {{-- <img src="https://images.unsplash.com/photo-1634932515818-7f9292c4e149?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="{{ $categorie->libelle }}"> --}}
                 <div class="card-body">
                     <h5 class="card-title">{{ $categorie->libelle }}</h5>
                     <p class="card-text">{{ $categorie->description }}</p>
                     <a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i> Découvrir</a>
                 </div>
             </div>
-            @endforeach
+            
         </div>
+        @endforeach
         <!-- Répéter les cartes pour d'autres produits -->
     </div>
 </div>
