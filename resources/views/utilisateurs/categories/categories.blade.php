@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Produits Alimentaires</title>
+    <title>Catégories - Produits Alimentaires</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
@@ -63,10 +63,10 @@
     <a class="navbar-brand" href="#">Kane&Frères</a>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('accueil') }}">Accueil</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item  active">
                 <a class="nav-link" href="{{ route('categories') }}">Catégories</a>
             </li>
             <li class="nav-item">
@@ -86,68 +86,35 @@
     </div>
 </nav>
 
-<!-- Bannière avec carrousel -->
+<!-- Bannière -->
 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="https://img.freepik.com/photos-gratuite/legumes-panier-table-bois_155003-5607.jpg?t=st=1717741324~exp=1717744924~hmac=eede4fc599292647d8ff517751fddea184d1e024549e5e78a91ce4dbcc8f6165&w=1380" class="d-block w-100" alt="Fruits et légumes">
+            <img src="https://www.equonet.net/photo/art/grande/60211230-44089638.jpg?v=1636729429" class="d-block w-100" alt="Fruits et légumes">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Fruits et Légumes</h5>
-                <p>Découvrez nos fruits et légumes frais, riches en vitamines et minéraux.</p>
+                <h5>Bienvenue dans la page catégorie</h5>
+                <p>Dans cette page vous allez découvrir les différentes variétés de nos produits</p>
             </div>
         </div>
-        <div class="carousel-item">
-            <img src="https://img.freepik.com/photos-gratuite/bouteille-lait-verre-classique_23-2150734435.jpg?t=st=1717741465~exp=1717745065~hmac=4dd6544241d8a4e0e385da4f7606d3f2581225823f73045b8aa86141623344f8&w=1380" class="d-block w-100" alt="Produits laitiers">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Produits Laitiers</h5>
-                <p>Dégustez nos produits laitiers frais et savoureux, riches en calcium.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1634932515818-7f9292c4e149?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Viandes et Poissons">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Viandes et Poissons</h5>
-                <p>Savourez nos viandes et poissons de haute qualité, pour une alimentation équilibrée.</p>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=2157&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Boissons">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Boissons</h5>
-                <p>Rafraîchissez-vous avec nos boissons variées, pour tous les goûts.</p>
-            </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Précédent</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Suivant</span>
-    </a>
 </div>
 
-<!-- Corps de la page avec produits sous forme de cartes -->
 <div class="container mt-5">
+    <h1>Dall len ak JAM</h1>
     <div class="row">
         <div class="col-md-4">
+            @foreach ($categories as $categorie)
             <div class="card">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Produit 1">
+                <img src="https://images.unsplash.com/photo-1634932515818-7f9292c4e149?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="{{ $categorie->libelle }}">
                 <div class="card-body">
-                    <h5 class="card-title">Produit 1</h5>
-                    <p class="card-text">Description courte du produit 1.</p>
-                    <p class="card-text"><strong>Prix: 4.500 FCFA</strong></p>
-                    <a href="#" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Ajouter au panier</a>
-                    <a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i> Voir détails</a>
+                    <h5 class="card-title">{{ $categorie->libelle }}</h5>
+                    <p class="card-text">{{ $categorie->description }}</p>
+                    <a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i> Découvrir</a>
                 </div>
             </div>
+            @endforeach
         </div>
         <!-- Répéter les cartes pour d'autres produits -->
     </div>
@@ -166,4 +133,3 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html> 
-

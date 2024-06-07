@@ -11,7 +11,16 @@ class CategorieController extends Controller
 
     public function index()
     {
-        return view('utilisateurs.index');
+        $categories = Categorie::all();
+        return view('utilisateurs.index', compact('categories'));
+
+    }
+
+    public function categories()
+    {
+        $categories = Categorie::all();
+        return view('utilisateurs.categories.categories', compact('categories'));
+
     }
 
     public function dashboard()
