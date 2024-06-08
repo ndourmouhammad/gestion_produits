@@ -1,32 +1,41 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProduitController;
-use App\Models\Produit;
 use Illuminate\Support\Facades\Route;
 
 
-// user simple
+// Authentification
+Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [AuthController::class, 'register']);
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+
+// Routes pour les utilisateurs simples
 Route::get('/', [ProduitController::class, 'index'])->name('accueil');
-Route::get('/categories', [CategorieController::class, 'categories'])->name('categories');
-Route::get('/produits',[ProduitController::class, 'afficher'])->name('produits');
+    Route::get('/categories', [CategorieController::class, 'categories'])->name('categories');
+    Route::get('/produits',[ProduitController::class, 'afficher'])->name('produits');
+    Route::get('/produit/{id}', [ProduitController::class, 'detail'])->name('detail')->where('id', '[0-9]+');
+Route::middleware(['auth:sanctum', 'role:user'])->group(function() {
+    //
+});
 
-Route::get('/produit/{id}', [ProduitController::class, 'detail'])->name('detail')->where('id', '[0-9]+');
+// Routes pour les administrateurs
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function() {
+    Route::get('/admin', [ProduitController::class, 'dashboard'])->name('dashboard');
+    Route::get('/form-ajout-categorie', [CategorieController::class, 'ajoutCategorieForm'])->name('ajoutCategorieForm');
+    Route::post('/ajout-categorie', [CategorieController::class, 'ajoutCategorie'])->name('ajout-categorie');
+    Route::get('/form-modif-categorie/{id}', [CategorieController::class, 'modifierCategorieForm'])->name('modifierCategorieForm')->where('id', '[0-9]+');
+    Route::post('/modifier-categorie/{id}', [CategorieController::class, 'modifierCategorie'])->name('modifier-categorie');
+    Route::get('/supprimer-categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->name('supprimer-categorie');
+    Route::get('/form-ajout-produit', [ProduitController::class, 'ajoutProduitForm'])->name('ajoutProduitForm');
+    Route::post('/ajout-produit', [ProduitController::class, 'ajoutProduit'])->name('ajout-produit');
+    Route::get('/form-modif-produit/{id}', [ProduitController::class, 'modifierProduitForm'])->name('modifierProduitForm')->where('id', '[0-9]+');
+    Route::post('/modifier-produit/{id}', [ProduitController::class, 'modifierProduit'])->name('modifier-produit');
+    Route::get('/supprimer-produit/{id}', [ProduitController::class, 'supprimerProduit'])->name('supprimer-produit');
+});
 
-// admin
-Route::get('/admin', [ProduitController::class, 'dashboard'])->name('dashboard');
 
-
-Route::get('/form-ajout-categorie', [CategorieController::class, 'ajoutCategorieForm'])->name('ajoutCategorieForm');
-Route::post('/ajout-categorie', [CategorieController::class, 'ajoutCategorie'])->name('ajout-categorie');
-
-Route::get('/form-modif-categorie/{id}', [CategorieController::class, 'modifierCategorieForm'])->name('modifierCategorieForm')->where('id', '[0-9]+');
-Route::post('/modifier-categorie/{id}', [CategorieController::class, 'modifierCategorie'])->name('modifier-categorie');
-Route::get('/supprimer-categorie/{id}', [CategorieController::class, 'supprimerCategorie'])->name('supprimer-categorie');
-
-Route::get('/form-ajout-produit', [ProduitController::class, 'ajoutProduitForm'])->name('ajoutProduitForm');
-Route::post('/ajout-produit', [ProduitController::class, 'ajoutProduit'])->name('ajout-produit');
-
-Route::get('/form-modif-produit/{id}', [ProduitController::class, 'modifierProduitForm'])->name('modifierProduitForm')->where('id', '[0-9]+');
-Route::post('/modifier-produit/{id}', [ProduitController::class, 'modifierProduit'])->name('modifier-produit');
-Route::get('/supprimer-produit/{id}', [ProduitController::class, 'supprimerProduit'])->name('supprimer-produit');
