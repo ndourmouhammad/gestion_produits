@@ -56,14 +56,15 @@
                     <h3 class="nav-link">Mouhammad NDOUR</h3>
                 </li>
                 <hr>
+               
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" data-target="#categories" data-toggle="tab">
-                        <i class="fas fa-sitemap mr-2"></i> Gestion des Catégories
+                    <a class="nav-link active" href="#" data-target="#produits" data-toggle="tab">
+                        <i class="fas fa-box mr-2"></i> Gestion des Produits
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-target="#produits" data-toggle="tab">
-                        <i class="fas fa-box mr-2"></i> Gestion des Produits
+                    <a class="nav-link " href="#" data-target="#categories" data-toggle="tab">
+                        <i class="fas fa-sitemap mr-2"></i> Gestion des Catégories
                     </a>
                 </li>
                 <li class="nav-item">
@@ -86,8 +87,62 @@
 
         <!-- Main content -->
         <div class="content tab-content">
+            
+
+            <!-- Gestion des Produits -->
+            <div class="tab-pane active" id="produits">
+                <h2>Gestion des Produits</h2>
+                <div class="table-wrapper">
+
+                    <a href="{{ route('ajoutProduitForm')}}"><button class="btn btn-warning">Ajouter un produit</button></a>
+                    @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Référence</th>
+                                <th>Désignation</th>
+                                <th>Prix unitaire</th>
+                                <th>Catégorie</th>
+                                <th>L'image</th>
+                                <th>L'état du produit</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($produits as $produit)
+                            <tr>
+                                <td>{{ $produit->id }}</td>
+                                <td>{{ $produit->reference }}</td>
+                                <td>{{ $produit->designation }}</td>
+                                <td>{{ $produit->prix_unitaire }} FCFA</td>
+                                <td>{{ $produit->categorie->libelle }}</td>
+                                <td><img class="img-fluid" alt="" style="max-width: 100px; max-height: 100px;" src="{{ $produit->image }}" alt=""></td>
+                                <td>{{ $produit->etat }}</td>
+                                <td>
+
+                                    <a href="{{ route('modifierProduitForm', $produit->id) }}"><button class="btn btn-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </button></a>
+
+                                    <a href="{{ route('supprimer-produit', $produit->id) }}"><button class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button></a>
+
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- Gestion des Catégories -->
-            <div class="tab-pane active" id="categories">
+            <div class="tab-pane " id="categories">
                 <h2>Gestion des Catégories</h2>
                 <div class="table-wrapper">
 
@@ -120,53 +175,6 @@
                                             <i class="fas fa-edit"></i>
                                         </button></a>
                                     <a href="{{ route('supprimer-categorie', $categorie->id) }}"><button class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button></a>
-
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Gestion des Produits -->
-            <div class="tab-pane" id="produits">
-                <h2>Gestion des Produits</h2>
-                <div class="table-wrapper">
-
-                    <a href="{{ route('ajoutProduitForm')}}"><button class="btn btn-warning">Ajouter un produit</button></a>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Référence</th>
-                                <th>Désignation</th>
-                                <th>Prix unitaire</th>
-                                <th>Catégorie</th>
-                                <th>L'image</th>
-                                <th>L'état du produit</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($produits as $produit)
-                            <tr>
-                                <td>{{ $produit->id }}</td>
-                                <td>{{ $produit->reference }}</td>
-                                <td>{{ $produit->designation }}</td>
-                                <td>{{ $produit->prix_unitaire }} FCFA</td>
-                                <td>{{ $produit->categorie->libelle }}</td>
-                                <td><img class="img-fluid" alt="" style="max-width: 100px; max-height: 100px;" src="{{ $produit->image }}" alt=""></td>
-                                <td>{{ $produit->etat }}</td>
-                                <td>
-
-                                    <a href="{{ route('modifierProduitForm', $produit->id) }}"><button class="btn btn-warning">
-                                            <i class="fas fa-edit"></i>
-                                        </button></a>
-
-                                    <a href="{{ route('supprimer-produit', $produit->id) }}"><button class="btn btn-danger">
                                             <i class="fas fa-trash"></i>
                                         </button></a>
 
