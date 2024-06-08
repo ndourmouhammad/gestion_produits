@@ -224,10 +224,10 @@
                                     <td><img class="img-fluid" alt="" style="max-width: 100px; max-height: 100px;" src="{{ $produit->image }}" alt=""></td>
                                     <td>
                                         {{-- Boutons d'action --}}
-                                        <a href="{{ route('modifierCategorieForm', $categorie->id) }}"><button class="btn btn-warning">
+                                        <a href="{{ route('commandes.etat', $commande->id) }}"><button class="btn btn-warning">
                                             <i class="fas fa-edit"></i>
                                         </button></a>
-                                        <a href="{{ route('supprimer-categorie', $categorie->id) }}"><button class="btn btn-danger">
+                                        <a href="{{ route('commandes.supprimer', $commande->id) }}"><button class="btn btn-danger">
                                             <i class="fas fa-trash"></i>
                                         </button></a>
                                     </td>

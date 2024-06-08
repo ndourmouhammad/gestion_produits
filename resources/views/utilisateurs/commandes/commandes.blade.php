@@ -166,16 +166,17 @@
                             <p>Catégorie : {{ $produit->categorie->libelle }} </p>
                             <div class="status-badge mb-2">
                                 @if ($commande->etat_commande == 'valide')
-                                    <span class="badge bg-success text-white">Etat : validée</span>
+                                    <span class="badge bg-success text-white">Etat : validé</span>
                                 @elseif ($commande->etat_commande == 'annule')
-                                    <span class="badge bg-danger text-white">Etat : annulée</span>
+                                    <span class="badge bg-danger text-white">Etat : annulé</span>
                                 @else
                                     <span class="badge bg-warning text-white">Etat : en cours</span>
                                 @endif
                                 
                             </div>
                             <div class="mt-5">
-                                <a href="#" class="btn btn-primary"></i> Modifier</a>
+                                <a href="{{ route('commandes.edit', $commande->id)}}" class="btn btn-primary"></i> Modifier</a>
+                                
                             </div>
                         </div>
                     </div>

@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/produit/{id}/commander', [CommandeController::class, 'showOrderForm'])->name('produit.commander');
     Route::post('/produit/{id}/commander', [CommandeController::class, 'placeOrder'])->name('produit.placeOrder');
     Route::get('/commandes', [CommandeController::class, 'afficher'])->name('commandes');
+    Route::get('/commandes/{id}/edit', [CommandeController::class, 'edit'])->name('commandes.edit');
+    Route::post('/commandes/{id}', [CommandeController::class, 'update'])->name('commandes.update');
 });
 
 
@@ -45,4 +47,7 @@ Route::middleware('App\Http\Middleware\CheckRole:admin')->group(function () {
     Route::post('/modifier-produit/{id}', [ProduitController::class, 'modifierProduit'])->name('modifier-produit');
     Route::get('/supprimer-produit/{id}', [ProduitController::class, 'supprimerProduit'])->name('supprimer-produit');
     Route::get('/users', [ProduitController::class, 'users'])->name('users');
+    Route::get('/modifier-etat/{id}', [CommandeController::class, 'editEtat'])->name('commandes.etat');
+    Route::post('/etat-commandes/{id}', [CommandeController::class, 'modifier_etat'])->name('commandes.etat.traitement');
+    Route::get('/commandes/{id}', [CommandeController::class, 'supprimer'])->name('commandes.supprimer');
 });
