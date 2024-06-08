@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('reference');
             $table->integer('montant_total');
             $table->enum('etat_commande', ['valide', 'annule', 'encours']);
+            $table->string('adresse_livraison');
+            $table->integer('telephone');
             $table->timestamps();
 
             // Ajoute une colonne 'user_id' de type entier non signé pour la clé étrangère
