@@ -196,14 +196,44 @@
                                 <th>ID</th>
                                 <th>Référence</th>
                                 <th>Client</th>
+                                <th>téléphone</th>
+                                <th>Adresse de livraison</th>
                                 <th>Date</th>
                                 <th>Statut</th>
+                                <th>Prix unitaire</th>
                                 <th>Montant total</th>
+                                <th>Catégorie</th>
+                                <th>image</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Les données des commandes seront insérées ici -->
+                            @foreach ($commandes as $commande)
+                            @foreach ($commande->produits as $produit)
+                                <tr>
+                                    <td>{{ $commande->id }}</td>
+                                    <td>{{ $produit->reference }}</td>
+                                    <td>{{ $commande->user->prenom }} {{ $commande->user->nom }}</td> 
+                                    <td>{{ $commande->telephone }}</td>
+                                    <td>{{ $commande->adresse_livraison }}</td>
+                                    <td>{{ $commande->created_at->format('d/m/Y') }}</td> 
+                                    <td>{{ $commande->etat_commande }}</td>
+                                    <td>{{ $produit->prix_unitaire }} FCFA</td>
+                                    <td>{{ $commande->montant_total }} FCFA</td>
+                                    <td>{{ $produit->categorie->libelle }}</td>
+                                    <td><img class="img-fluid" alt="" style="max-width: 100px; max-height: 100px;" src="{{ $produit->image }}" alt=""></td>
+                                    <td>
+                                        {{-- Boutons d'action --}}
+                                        <a href="{{ route('modifierCategorieForm', $categorie->id) }}"><button class="btn btn-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </button></a>
+                                        <a href="{{ route('supprimer-categorie', $categorie->id) }}"><button class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

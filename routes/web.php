@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\ProduitController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware;
@@ -17,18 +18,22 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Routes pour les users simples
 Route::get('/', [ProduitController::class, 'index'])->name('accueil');
-    Route::get('/categories', [CategorieController::class, 'categories'])->name('categories');
-    Route::get('/produits',[ProduitController::class, 'afficher'])->name('produits');
-    Route::get('/produit/{id}', [ProduitController::class, 'detail'])->name('detail')->where('id', '[0-9]+');
+Route::get('/categories', [CategorieController::class, 'categories'])->name('categories');
+Route::get('/produits', [ProduitController::class, 'afficher'])->name('produits');
+Route::get('/produit/{id}', [ProduitController::class, 'detail'])->name('detail')->where('id', '[0-9]+');
 
 
-Route::middleware(['role:user_simple'])->group(function() {
-    //
+Route::middleware(['auth'])->group(function () {
+    Route::get('/produit/{id}/commander', [CommandeController::class, 'showOrderForm'])->name('produit.commander');
+    Route::post('/produit/{id}/commander', [CommandeController::class, 'placeOrder'])->name('produit.placeOrder');
+    Route::get('/commandes', [CommandeController::class, 'afficher'])->name('commandes');
 });
+
+
 
 // Routes pour les administrateurs
 Route::middleware('App\Http\Middleware\CheckRole:admin')->group(function () {
-    Route::get('/admin', [ProduitController::class, 'dashboard'])->name('dashboard');
+    Route::get('/admin', [ProduitController::class, 'dashboard'])->name('dashboard')->middleware('auth');
     Route::get('/form-ajout-categorie', [CategorieController::class, 'ajoutCategorieForm'])->name('ajoutCategorieForm');
     Route::post('/ajout-categorie', [CategorieController::class, 'ajoutCategorie'])->name('ajout-categorie');
     Route::get('/form-modif-categorie/{id}', [CategorieController::class, 'modifierCategorieForm'])->name('modifierCategorieForm')->where('id', '[0-9]+');
@@ -41,5 +46,3 @@ Route::middleware('App\Http\Middleware\CheckRole:admin')->group(function () {
     Route::get('/supprimer-produit/{id}', [ProduitController::class, 'supprimerProduit'])->name('supprimer-produit');
     Route::get('/users', [ProduitController::class, 'users'])->name('users');
 });
-
-

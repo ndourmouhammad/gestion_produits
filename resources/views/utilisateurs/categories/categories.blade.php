@@ -73,7 +73,7 @@
                 <a class="nav-link" href="{{ route('produits') }}">Produits</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Commandes</a>
+                <a class="nav-link" href="{{ route('commandes')}}">Commandes</a>
             </li>
             
         </ul>

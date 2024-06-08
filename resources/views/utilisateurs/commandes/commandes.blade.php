@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - Produits Alimentaires</title>
+    <title>Accueil - commandes Alimentaires</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
@@ -63,7 +63,7 @@
     <a class="navbar-brand" href="#">Kane&Frères</a>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="{{ route('accueil') }}">Accueil</a>
             </li>
             <li class="nav-item">
@@ -73,7 +73,7 @@
                 <a class="nav-link" href="{{ route('produits') }}">Produits</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('commandes')}}">Commandes</a>
+                <a class="nav-link active" href="{{ route('commandes')}}">Commandes</a>
             </li>
             
         </ul>
@@ -111,10 +111,10 @@
             </div>
         </div>
         <div class="carousel-item">
-            <img src="https://img.freepik.com/photos-gratuite/bouteille-lait-verre-classique_23-2150734435.jpg?t=st=1717741465~exp=1717745065~hmac=4dd6544241d8a4e0e385da4f7606d3f2581225823f73045b8aa86141623344f8&w=1380" class="d-block w-100" alt="Produits laitiers">
+            <img src="https://img.freepik.com/photos-gratuite/bouteille-lait-verre-classique_23-2150734435.jpg?t=st=1717741465~exp=1717745065~hmac=4dd6544241d8a4e0e385da4f7606d3f2581225823f73045b8aa86141623344f8&w=1380" class="d-block w-100" alt="commandes laitiers">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Produits Laitiers</h5>
-                <p>Dégustez nos produits laitiers frais et savoureux, riches en calcium.</p>
+                <h5>commandes Laitiers</h5>
+                <p>Dégustez nos commandes laitiers frais et savoureux, riches en calcium.</p>
             </div>
         </div>
         <div class="carousel-item">
@@ -142,43 +142,55 @@
     </a>
 </div>
 
-<!-- Corps de la page avec produits sous forme de cartes -->
-<div class="container mt-5">
-    <div class="row">
-        @foreach ($categoriesAvecProduits as $categorie)
-        <div class="col-md-12">
-            <h2>{{ $categorie->libelle }}</h2>
-        </div>
-        @foreach ($categorie->produits as $produit)
-        <div class="col-md-4">
-            <div class="card mt-3 mb-3">
-                <img src="{{ $produit->image }}" class="card-img-top" alt="{{ $produit->designation }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $produit->designation }}</h5>
-                    <p class="card-text"><strong>Prix: {{ $produit->prix_unitaire }} FCFA</strong></p>
-                    <div class="status-badge mb-2">
-                        @if ($produit->etat == 'disponible')
-                        <span class="badge bg-success text-white">disponible</span>
-                        @elseif ($produit->etat == 'en_rupture')
-                        <span class="badge bg-danger text-white">en rupture</span>
-                        @else
-                        <span class="badge bg-warning text-white">en stock</span>
-                        @endif
-                    </div>
-                    <a href="{{ route('produit.commander', $produit->id) }}" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Ajouter au panier</a>
-                    <a href="{{ route('detail', $produit->id) }}" class="btn btn-primary"><i class="fas fa-info-circle"></i> Voir détails</a>
+<!-- Corps de la page avec commandes sous forme de cartes -->
+
+    <div class="container">
+        <h1 class="mt-5">Les informations de commande</h1>
+        <div class="card mt-5">
+            @foreach ($commandes as $commande)
+                <div class="card-header">
+                    <h1>Commande numéro {{ $commande->id }}</h1>
                 </div>
+                @foreach ($commande->produits as $produit)
+                    <div class="d-flex">
+                        <img src="{{ $produit->image }}" class="card-img-top w-50 mx-auto" alt="{{ $produit->designation }}">
+                        <div class="card-body">
+                            <p>Désignation du produit commandé : {{ $produit->designation }} </p>
+                            <p>Date de la commande: {{ $commande->created_at->format('d/m/Y') }}</p>
+                            <p>Référence de la commande : {{ $commande->reference }}</p>
+                            <p>Référence du produit : {{ $produit->reference }}</p>
+                            <p>Prix unitaire : {{ $produit->prix_unitaire }} FCFA</p>
+                            <p>Montant total : {{ $commande->montant_total }} FCFA</p>
+                            <p>Adresse de livraison : {{ $commande->adresse_livraison }}</p>
+                            <p>Numéro téléphone : {{ $commande->telephone }}</p>
+                            <p>Catégorie : {{ $produit->categorie->libelle }} </p>
+                            <div class="status-badge mb-2">
+                                @if ($commande->etat_commande == 'valide')
+                                    <span class="badge bg-success text-white">Etat : validée</span>
+                                @elseif ($commande->etat_commande == 'annule')
+                                    <span class="badge bg-danger text-white">Etat : annulée</span>
+                                @else
+                                    <span class="badge bg-warning text-white">Etat : en cours</span>
+                                @endif
+                                
+                            </div>
+                            <div class="mt-5">
+                                <a href="#" class="btn btn-primary"></i> Modifier</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endforeach  
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ $commandes->links() }}
             </div>
         </div>
-        @endforeach
-        @endforeach
     </div>
-    <div class="row">
-        <div class="col">
-            {{ $categoriesAvecProduits->links() }}
-        </div>
-    </div>
-</div>
+    
+             
+
 
 
 <!-- Footer -->

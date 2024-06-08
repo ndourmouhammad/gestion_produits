@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produit;
-use App\Models\Categorie;
 use App\Models\User;
+use App\Models\Produit;
+use App\Models\Commande;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProduitController extends Controller
 {
@@ -31,7 +33,9 @@ class ProduitController extends Controller
         $categories = Categorie::all();
         $produits = Produit::all();
         $users = User::all();
-        return view('admins.dashboard', compact('categories', 'produits', 'users'));
+        $commandes = Commande::with(['produits', 'user'])->get(); // Notez l'utilisation correcte de 'user'
+        
+        return view('admins.dashboard', compact('categories', 'produits', 'users', 'commandes'));
     }
 
     public function detail($id)

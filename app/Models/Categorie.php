@@ -13,12 +13,12 @@ class Categorie extends Model
 
     protected $fillable = ['libelle', 'description', 'user_id'];
 
-    public function produits(): HasMany
+    public function produits()
     {
         return $this->hasMany(Produit::class);
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
