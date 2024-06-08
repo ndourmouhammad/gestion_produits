@@ -15,7 +15,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 
-// Routes pour les utilisateurs simples
+// Routes pour les users simples
 Route::get('/', [ProduitController::class, 'index'])->name('accueil');
     Route::get('/categories', [CategorieController::class, 'categories'])->name('categories');
     Route::get('/produits',[ProduitController::class, 'afficher'])->name('produits');
@@ -39,6 +39,7 @@ Route::middleware('App\Http\Middleware\CheckRole:admin')->group(function () {
     Route::get('/form-modif-produit/{id}', [ProduitController::class, 'modifierProduitForm'])->name('modifierProduitForm')->where('id', '[0-9]+');
     Route::post('/modifier-produit/{id}', [ProduitController::class, 'modifierProduit'])->name('modifier-produit');
     Route::get('/supprimer-produit/{id}', [ProduitController::class, 'supprimerProduit'])->name('supprimer-produit');
+    Route::get('/users', [ProduitController::class, 'users'])->name('users');
 });
 
 

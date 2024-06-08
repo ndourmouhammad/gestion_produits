@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produit;
 use App\Models\Categorie;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProduitController extends Controller
@@ -29,7 +30,8 @@ class ProduitController extends Controller
     {
         $categories = Categorie::all();
         $produits = Produit::all();
-        return view('admins.dashboard', compact('categories', 'produits'));
+        $users = User::all();
+        return view('admins.dashboard', compact('categories', 'produits', 'users'));
     }
 
     public function detail($id)
