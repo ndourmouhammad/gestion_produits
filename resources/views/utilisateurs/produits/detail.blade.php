@@ -82,7 +82,7 @@
                 <a class="nav-link" href="{{ route('produits') }}">Produits</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Commandes</a>
+                <a class="nav-link" href="{{ route('commandes')}}">Commandes</a>
             </li>
            
         </ul>
@@ -127,9 +127,10 @@
                     @else
                     <span class="badge bg-warning text-white">en stock</span>
                     @endif
-                    <div class="mt-5">
-                        <a href="#" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Ajouter au panier</a>
-                    </div>
+                    
+                </div>
+                <div class="mt-5">
+                    <a href="{{ route('produit.commander', $produit->id) }}" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Ajouter au panier</a>
                 </div>
             </div>
         </div>
