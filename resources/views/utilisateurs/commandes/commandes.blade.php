@@ -54,6 +54,25 @@
         .auth-buttons .btn {
             margin-left: 10px;
         }
+        
+    /* Styles pour le footer */
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    /* Styles pour le corps de la page */
+    body {
+        margin-bottom: 60px; /* Ajoute une marge en bas égale à la hauteur du footer */
+    }
+
+
     </style>
 </head>
 <body>
@@ -145,8 +164,9 @@
 <!-- Corps de la page avec commandes sous forme de cartes -->
 
     <div class="container">
-        <h1 class="mt-5">Les informations de commande</h1>
+        <h1 class="mt-5">Mes commande</h1>
         <div class="card mt-5">
+            
             @foreach ($commandes as $commande)
                 <div class="card-header">
                     <h1>Commande numéro {{ $commande->id }}</h1>
