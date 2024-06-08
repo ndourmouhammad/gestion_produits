@@ -37,6 +37,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'prenom' => $request->prenom,
             'password' => Hash::make($request->password), // Utiliser Hash::make() pour hacher le mot de passe
+            'role' => 'user_simple', // Définir un rôle par défaut pour les nouveaux utilisateurs
         ]);
 
         // Rediriger avec un message de succès après l'inscription
@@ -51,14 +52,19 @@ class AuthController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
-
-
         // Tentative d'authentification avec les informations d'identification fournies
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            // Authentification réussie, rediriger vers la page souhaitée
-            return redirect()->intended('/');
+            // Vérifier le rôle de l'utilisateur
+            $user = Auth::user();
+            if ($user->role === 'admin') {
+                // Rediriger l'administrateur vers le tableau de bord administrateur
+                return redirect()->intended('/admin');
+            } else {
+                // Rediriger l'utilisateur vers la page d'accueil
+                return redirect()->intended('/');
+            }
         }
 
         // Authentification échouée, rediriger avec une erreur

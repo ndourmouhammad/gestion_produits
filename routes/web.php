@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProduitController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware;
 
 
 // Authentification
@@ -19,12 +20,14 @@ Route::get('/', [ProduitController::class, 'index'])->name('accueil');
     Route::get('/categories', [CategorieController::class, 'categories'])->name('categories');
     Route::get('/produits',[ProduitController::class, 'afficher'])->name('produits');
     Route::get('/produit/{id}', [ProduitController::class, 'detail'])->name('detail')->where('id', '[0-9]+');
-Route::middleware(['auth:sanctum', 'role:user'])->group(function() {
+
+
+Route::middleware(['role:user_simple'])->group(function() {
     //
 });
 
 // Routes pour les administrateurs
-Route::middleware(['auth:sanctum', 'role:admin'])->group(function() {
+Route::middleware('App\Http\Middleware\CheckRole:admin')->group(function () {
     Route::get('/admin', [ProduitController::class, 'dashboard'])->name('dashboard');
     Route::get('/form-ajout-categorie', [CategorieController::class, 'ajoutCategorieForm'])->name('ajoutCategorieForm');
     Route::post('/ajout-categorie', [CategorieController::class, 'ajoutCategorie'])->name('ajout-categorie');
