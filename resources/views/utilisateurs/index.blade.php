@@ -79,8 +79,18 @@
         </ul>
     </div>
     <div class="auth-buttons">
-        <a href="#" class="btn btn-outline-light">Connexion</a>
-        <a href="#" class="btn btn-outline-light">Inscription</a>
+        @auth
+        <div class="nav-item">
+            <span class="nav-link text-white">Bienvenue, {{ auth()->user()->prenom}}</span>
+        </div>
+        <div class="nav-item">
+                <a href="{{ route('logout') }}" class="btn btn-outline-light">Déconnexion</a>
+        </div>
+        @endauth
+        @guest
+        <a href="{{ route('login') }}" class="btn btn-outline-light">Connexion</a>
+        <a href="{{ route('register') }}" class="btn btn-outline-light">Inscription</a>
+        @endguest
     </div>
 </nav>
 
