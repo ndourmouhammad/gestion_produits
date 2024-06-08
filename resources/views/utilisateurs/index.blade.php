@@ -173,6 +173,11 @@
         @endforeach
         @endforeach
     </div>
+    <div class="row">
+        <div class="col">
+            {{ $categoriesAvecProduits->links() }}
+        </div>
+    </div>
 </div>
 
 

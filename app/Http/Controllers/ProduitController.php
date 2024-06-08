@@ -14,7 +14,7 @@ class ProduitController extends Controller
     public function index()
     {
         // Récupérer toutes les catégories avec leurs produits associés
-        $categoriesAvecProduits = Categorie::with('produits')->get();
+        $categoriesAvecProduits = Categorie::with('produits')->paginate(1);
 
         // Passer les données à la vue
         return view('utilisateurs.index', compact('categoriesAvecProduits'));
