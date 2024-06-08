@@ -9,13 +9,6 @@ class CategorieController extends Controller
 {
     //
 
-    public function index()
-    {
-        $categories = Categorie::all();
-        return view('utilisateurs.index', compact('categories'));
-
-    }
-
     public function detail($id)
     {
         $categorie = Categorie::findOrFail($id); // Trouve le bien par son ID ou renvoie une erreur 404
@@ -29,11 +22,10 @@ class CategorieController extends Controller
 
     }
 
-    public function dashboard()
-    {
-        $categories = Categorie::all();
-        return view('admins.dashboard', compact('categories'));
-    }
+   public function ajoutCategorieForm()
+   {
+    return view('admins.categories.ajout');
+   }
 
     public function ajoutCategorie(Request $request)
     {
@@ -45,7 +37,13 @@ class CategorieController extends Controller
 
         Categorie::create($request->all());
 
-        return redirect()->back()->with('success', 'Catégorie ajouté avec succès');
+        return redirect(route('dashboard'))->with('success', 'Catégorie ajouté avec succès');
+    }
+
+    public function modifierCategorieForm($id)
+    {
+        $categorie = Categorie::findOrFail($id);
+     return view('admins.categories.modification', compact('categorie'));
     }
 
     public function modifierCategorie(Request $request, $id)
@@ -59,7 +57,7 @@ class CategorieController extends Controller
         $categorie = Categorie::findOrFail($id);
         $categorie->update($donneesvalides);
 
-        return redirect()->back()->with('success', 'Catégorie modifiée avec succès');
+        return redirect(route('dashboard'))->with('success', 'Catégorie modifiée avec succès');
     }
 
     public function supprimerCategorie($id)
