@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('nom');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('mot_de_passe');
+            //$table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             // $table->rememberToken();
             $table->enum('role', ['admin', 'user_simple'])->default('user_simple');
             $table->timestamps();

@@ -74,7 +74,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-target="#users" data-toggle="tab">
-                        <i class="fas fa-users mr-2"></i> Gestion des Utilisateurs
+                        <i class="fas fa-users mr-2"></i> Gestion des users
                     </a>
                 </li>
                 <li class="nav-item">
@@ -209,24 +209,42 @@
                 </div>
             </div>
 
-            <!-- Gestion des Utilisateurs -->
+            <!-- Gestion des users -->
             <div class="tab-pane" id="users">
-                <h2>Gestion des Utilisateurs</h2>
+                <h2>Gestion des users</h2>
                 <div class="table-wrapper">
-                    <button class="btn btn-warning" data-toggle="modal" data-target="#addUserModal">Ajouter un utilisateur</button>
+                    {{-- <button class="btn btn-warning" data-toggle="modal" data-target="#addUserModal">Ajouter un user</button> --}}
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nom complet d'utilisateur</th>
+                                <th>Nom complet d'user</th>
                                 <th>Email</th>
-                                <th>Mot de passe</th>
+                                <th>Mot de passe crypté</th>
                                 <th>Rôle</th>
-                                <th>Actions</th>
+                                {{-- <th>Actions</th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Les données des utilisateurs seront insérées ici -->
+                            @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->prenom }} {{ $user->nom }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->password }}</td>
+                                <td>{{ $user->role }}</td>
+                                <td>
+
+                                    {{-- <a href="{{ route('modifierCategorieForm', $categorie->id) }}"><button class="btn btn-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </button></a>
+                                    <a href="{{ route('supprimer-categorie', $categorie->id) }}"><button class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button></a> --}}
+
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
