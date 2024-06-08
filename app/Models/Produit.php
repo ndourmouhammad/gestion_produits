@@ -12,12 +12,12 @@ class Produit extends Model
 
     use HasFactory;
 
-    public function categorie(): BelongsTo
+    public function categorie()
     {
         return $this->belongsTo(Categorie::class);
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
