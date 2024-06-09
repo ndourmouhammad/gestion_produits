@@ -167,7 +167,7 @@
 <!-- Corps de la page avec commandes sous forme de cartes -->
 
     <div class="container">
-        <h1 class="mt-5">Mes commande</h1>
+        <h1 class="mt-5">Mes commandes</h1>
         <div class="card mt-5">
             
             @foreach ($commandes as $commande)
