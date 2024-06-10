@@ -119,7 +119,14 @@
         <h2>Commander le produit: {{ $produit->designation }}</h2>
        <img src="{{ $produit->image }}" class="w-50 mx-auto my-auto" alt="">
         @csrf
-    
+        
+        <div class="form-group">
+            <label for="quantity">Quantité</label>
+            <input type="number" name="quantity" class="form-control" id="quantity" value="{{ old('quantity')}}">
+            @error('quantity')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
         <div class="form-group">
             <label for="adresse_livraison">Adresse de livraison</label>
             <input type="text" name="adresse_livraison" class="form-control" id="adresse_livraison" value="{{ old('adresse_livraison')}}">

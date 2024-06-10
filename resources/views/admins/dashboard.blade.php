@@ -78,7 +78,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="login">
                         <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
                     </a>
                 </li>
@@ -250,7 +250,7 @@
                                 <th>ID</th>
                                 <th>Nom complet d'user</th>
                                 <th>Email</th>
-                                <th>Mot de passe crypté</th>
+                                
                                 <th>Rôle</th>
                                 {{-- <th>Actions</th> --}}
                             </tr>
@@ -261,7 +261,7 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->prenom }} {{ $user->nom }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->password }}</td>
+                                
                                 <td>{{ $user->role }}</td>
                                 <td>
 
