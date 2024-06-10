@@ -35,7 +35,7 @@ class CommandeController extends Controller
         $commande = Commande::create([
             'reference' => 'CMD-' . uniqid(),
             'montant_total' => $produit->prix_unitaire * $request->quantity,
-            'montant_total' => $produit->prix_unitaire,
+            //'montant_total' => $produit->prix_unitaire,
             'date_commande' => now(),
             'adresse_livraison' => $request->adresse_livraison, // Assurez-vous que cette ligne est correcte
             'etat_commande' => 'encours',
