@@ -36,6 +36,17 @@
             background-color: #f9f9f9;
         }
 
+        p {
+            margin-top: 50px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            border: 1px solid #FF9800;
+            border-radius: 10px;
+            background-color: #f9f9f9
+        }
+
         label {
             font-weight: bold;
         }
