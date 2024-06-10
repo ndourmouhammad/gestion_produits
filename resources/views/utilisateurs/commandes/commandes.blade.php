@@ -72,7 +72,10 @@
         margin-bottom: 60px; /* Ajoute une marge en bas égale à la hauteur du footer */
     }
 
-
+    .pagination .page-item .page-link {
+        background-color: #4CAF50;
+        color: white; /* Change la couleur du texte si nécessaire */
+    }
     </style>
 </head>
 <body>
