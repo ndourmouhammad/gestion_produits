@@ -34,7 +34,7 @@ class CommandeController extends Controller
     
         $commande = Commande::create([
             'reference' => 'CMD-' . uniqid(),
-            // 'montant_total' => $produit->prix_unitaire * $request->quantity,
+            'montant_total' => $produit->prix_unitaire * $request->quantity,
             'montant_total' => $produit->prix_unitaire,
             'date_commande' => now(),
             'adresse_livraison' => $request->adresse_livraison, // Assurez-vous que cette ligne est correcte
@@ -43,9 +43,9 @@ class CommandeController extends Controller
             'user_id' => Auth::id()
         ]);
     
-        $commande->produits()->attach($id);
+        //$commande->produits()->attach($id);
 
-        // $commande->produits()->attach($id, ['quantity' => $request->quantity]);
+        $commande->produits()->attach($id, ['quantity' => $request->quantity]);
     
         return redirect()->route('commandes')->with('success', 'Commande passée avec succès.');
     }
