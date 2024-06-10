@@ -27,7 +27,7 @@ class CommandeController extends Controller
         $request->validate([
             'adresse_livraison' => 'required|string|max:255',
             'telephone' => 'required|string|regex:/^(\+\d{1,14})?\d{7,14}$/',
-            // 'quantity' => 'required|integer|min:1'
+            'quantity' => 'required|integer|min:1'
         ]);
     
         $produit = Produit::findOrFail($id);

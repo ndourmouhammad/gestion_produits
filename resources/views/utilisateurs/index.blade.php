@@ -69,10 +69,13 @@
     .card-body .btn {
         margin-top: auto; /* Pousser les boutons vers le bas */
     }
+    .pagination .page-item .page-link {
+        background-color: #4CAF50;
+        color: white; /* Change la couleur du texte si nécessaire */
+    }
 </style>
 
 
-    </style>
 </head>
 <body>
 
