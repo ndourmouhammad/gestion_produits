@@ -60,27 +60,28 @@
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" data-target="#categories" data-toggle="tab">
-                        <i class="fas fa-sitemap mr-2"></i> Gestion des Catégories
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-target="#produits" data-toggle="tab">
+                    <a class="nav-link active" href="{{ route('dashboard') }}" data-target="#produits" >
                         <i class="fas fa-box mr-2"></i> Gestion des Produits
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-target="#commandes" data-toggle="tab">
+                    <a class="nav-link " href="{{ route('dashboard') }}" data-target="#categories">
+                        <i class="fas fa-sitemap mr-2"></i> Gestion des Catégories
+                    </a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dashboard') }}" data-target="#commandes">
                         <i class="fas fa-shopping-cart mr-2"></i> Gestion des Commandes
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-target="#users" data-toggle="tab">
+                    <a class="nav-link" href="{{ route('dashboard') }}" data-target="#users" >
                         <i class="fas fa-users mr-2"></i> Gestion des Utilisateurs
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('login') }}">
                         <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
                     </a>
                 </li>

@@ -27,7 +27,7 @@
         /* Styles spécifiques au formulaire */
         form {
             margin-top: 50px;
-            max-width: 400px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             padding: 20px;
@@ -93,19 +93,19 @@
     
     <!-- Formulaire de connexion -->
     <form method="POST" action="{{ route('login') }}" class="mt-5">
-        <h1>Connexion</h1>
+        <h1 class="mt-5 mb-5 text-center">Connexion</h1>
         @csrf
     
         <div>
             <input type="email" name="email" placeholder="Adresse email" value="{{ old('email') }}">
             @error('email')
-                <span>{{ $message }}</span>
+                <span class="error text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div>
             <input type="password" name="password" placeholder="Mot de passe">
             @error('password')
-                <span>{{ $message }}</span>
+                <span class="error text-danger">{{ $message }}</span>
             @enderror
         </div>
     
