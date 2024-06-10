@@ -122,7 +122,7 @@
         
         <div class="form-group">
             <label for="quantity">Quantité</label>
-            <input type="number" name="quantity" class="form-control" id="quantity" value="{{ old('quantity')}}">
+            <input type="text" name="quantity" class="form-control" id="quantity" value="{{ old('quantity')}}">
             @error('quantity')
                 <span class="text-danger">{{ $message }}</span>
             @enderror
